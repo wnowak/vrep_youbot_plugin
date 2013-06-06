@@ -7,8 +7,8 @@
 
 #include "vrep_plugin/ros/callback/ClockCallback.h"
 
-//#include "vrep_plugin/ros/pluglet/ClockPluglet.h"
-//#include "vrep_plugin/VRepPlugletRegistry.h"
+#include "vrep_plugin/ros/pluglet/ClockPluglet.h"
+#include "vrep_plugin/VRepPlugletRegistry.h"
 
 #include "ros/ros.h"
 
@@ -36,19 +36,18 @@ void ClockCallback::luaCall(Argslist args) {
 		return;
 	}
 
-	/*
 	ClockPluglet* pluglet = new ClockPluglet();
 	pluglet->setTopicName(boost::any_cast<std::string>(args[0]));
 
-	vrep::VRepPlugletRegistry::getInstance()->getPluglets().push_back(pluglet);
-	*/
+	vrep::VRepPlugletRegistry::getInstance()->getPluglets().push_back(pluglet);	
+	pluglet->v_repSimStarts_callback();
 }
 
 GenericLuaCallback::LuaDescription ClockCallback::getDescription() {
 	GenericLuaCallback::LuaDescription d;
 
-	d.name = "rosCreateClockPubslisher";
-	d.tooltip = "rosCreateClockPubslisher(string topicName)";
+	d.name = "rosCreateClockPublisher";
+	d.tooltip = "rosCreateClockPublisher(string topicName)";
 	d.argTypes[0] = 1;
 	d.argTypes[1] = sim_lua_arg_string;
 	d.argTypes[2] = 0;

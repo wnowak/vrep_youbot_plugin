@@ -99,7 +99,7 @@ VREP_DLLEXPORT unsigned char v_repStart(void* reservedPointer,int reservedInt)
 	char** argv = {};
 
 
-	ros::init(argc, argv,"V-RepyouBot");
+	ros::init(argc, argv,"vrep_youbot_plugin");
 
 	if(!ros::master::check()) {
 		std::cout << "No ROS master available - youBot Plugin not initialized" << std::endl;
@@ -180,8 +180,10 @@ VREP_DLLEXPORT void* v_repMessage(int message,int* auxiliaryData,void* customDat
 			// React to an instance switch here!!
 		}
 
-
 		if (simGetSimulationState() == sim_simulation_advancing_running) {
+
+			// ROS main loop
+			ros::spinOnce();
 
 			for (unsigned int i=0; i  < vrep::VRepPlugletRegistry::getInstance()->getPluglets().size(); i++) {
 				if (vrep::VRepPlugletRegistry::getInstance()->getPluglets()[i]->is_active())

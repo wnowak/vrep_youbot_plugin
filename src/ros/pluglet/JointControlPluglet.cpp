@@ -21,7 +21,6 @@ JointControlPluglet::~JointControlPluglet() {
 }
 
 void JointControlPluglet::init() {
-
 	std::stringstream ss_pos;
 	ss_pos << topicName << "/position_command";
 
@@ -31,7 +30,6 @@ void JointControlPluglet::init() {
 	std::stringstream ss_force;
 	ss_force << topicName << "/force_command";
 
-
 	arm_ctl_pos_subscriber = nodeHandle.subscribe(ss_pos.str().c_str(),1,
 			&JointControlPluglet::positionCallback,this);;
 
@@ -40,7 +38,6 @@ void JointControlPluglet::init() {
 
 	arm_ctl_torque_subscriber = nodeHandle.subscribe(ss_force.str().c_str(),1,
 					&JointControlPluglet::torqueCallback,this);
-
 }
 
 
@@ -48,7 +45,6 @@ void JointControlPluglet::v_repMessage_callback() {
 	if (simGetSimulationState() != sim_simulation_advancing_running) {
 		return;
 	}
-
 }
 
 void JointControlPluglet::v_repSimEnds_callback() {
@@ -56,10 +52,7 @@ void JointControlPluglet::v_repSimEnds_callback() {
 }
 
 
-void JointControlPluglet::positionCallback(
-		const brics_actuator::JointPositions msg) {
-
-
+void JointControlPluglet::positionCallback(const brics_actuator::JointPositions msg) {
 	//if (ctl_state != Position) {
 	for (unsigned int i = 0; i < handles.size(); i++) {
 		simSetObjectIntParameter(handles[i], 2000, 1);
@@ -78,16 +71,11 @@ void JointControlPluglet::positionCallback(
 		if (handle > 0) {
 			simSetJointTargetPosition(handle,
 						msg.positions[i].value);
-
 		}
 	}
-
 }
 
-void JointControlPluglet::velocityCallback(
-		const brics_actuator::JointVelocities msg) {
-
-
+void JointControlPluglet::velocityCallback(const brics_actuator::JointVelocities msg) {
 	//if (ctl_state != Velocity) {
 	for (unsigned int i = 0; i < handles.size(); i++) {
 		simSetObjectIntParameter(handles[i], 2000, 1);
@@ -128,13 +116,9 @@ void JointControlPluglet::velocityCallback(
 			}
 		}
 	}
-
 }
 
-void JointControlPluglet::torqueCallback(
-		const brics_actuator::JointTorques msg) {
-
-
+void JointControlPluglet::torqueCallback(const brics_actuator::JointTorques msg) {
 	for (unsigned int i = 0; i < handles.size(); i++) {
 		simSetObjectIntParameter(handles[i], 2000, 1);
 		simSetObjectIntParameter(handles[i], 2001, 0);

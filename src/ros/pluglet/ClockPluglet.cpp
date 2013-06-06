@@ -15,7 +15,7 @@
 
 namespace vrep {
 
-ClockPluglet::ClockPluglet() : VRepPluglet() {
+ClockPluglet::ClockPluglet() : VRepRosPluglet() {
 
 }
 

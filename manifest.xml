@@ -1,5 +1,5 @@
 <package>
-  <description brief="vrep_plugin">
+  <description brief="vrep_youbot_plugin">
 
      vrep_youbot_plugin
 
@@ -18,6 +18,7 @@
   <depend package="tf" />
   <depend package="cv_bridge" />
   <depend package="pcl" />
+  <depend package="pcl_ros" />
   <!--
   <depend package="vrep_common"/>
   -->

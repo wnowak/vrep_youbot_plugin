@@ -28,6 +28,8 @@ JointControlCallback::~JointControlCallback() {
 
 void JointControlCallback::luaCall(Argslist args) {
 
+std::cout << "DBG: Callback called (positionCallback) luacall." << std::endl;
+
 	if (args.size() < 2) {
 		ROS_ERROR("Not enough arguments for v-rep JointControlCallbackr");
 		return;

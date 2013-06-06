@@ -12,10 +12,10 @@
 #include "brics_actuator/JointVelocities.h"
 #include "brics_actuator/JointTorques.h"
 
-#include "vrep_plugin/VRepPluglet.h"
+#include "vrep_plugin/ros/VRepRosPluglet.h"
 
 namespace vrep {
-class ClockPluglet : public VRepPluglet {
+class ClockPluglet : public VRepRosPluglet {
 protected:
 
 	ros::Publisher publisher;
