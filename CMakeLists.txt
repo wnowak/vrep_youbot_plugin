@@ -39,6 +39,9 @@ rosbuild_add_library(v_repExtyouBot
 	src/ros/callback/JointControlCallback.cpp
 	src/ros/pluglet/JointControlPluglet.cpp
 
+	src/ros/callback/OdometryCallback.cpp
+	src/ros/pluglet/OdometryPluglet.cpp
+
 	src/ros/callback/SwedishBaseControllerCallback.cpp
 	src/ros/pluglet/SwedishBaseControllerPluglet.cpp
 ) 

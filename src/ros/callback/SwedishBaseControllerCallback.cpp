@@ -29,8 +29,8 @@ SwedishBaseControllerCallback::~SwedishBaseControllerCallback() {
 
 void SwedishBaseControllerCallback::luaCall(Argslist args) {
 
-	if (args.size() < 1) {
-		ROS_ERROR("Not enough arguments for v-rep clock publisher");
+	if (args.size() < 2) {
+		ROS_ERROR("Not enough arguments for v-rep SwedishBaseController");
 		return;
 	}
 
@@ -42,8 +42,9 @@ void SwedishBaseControllerCallback::luaCall(Argslist args) {
 	int r2 = boost::any_cast<int> (handles[1]);
 	int r3 = boost::any_cast<int> (handles[2]);
 	int r4 = boost::any_cast<int> (handles[3]);
-
 	pluglet->setHandles(r1,r2,r3,r4);
+
+	pluglet->init();
 
 	vrep::VRepPlugletRegistry::getInstance()->getPluglets().push_back(pluglet);
 }

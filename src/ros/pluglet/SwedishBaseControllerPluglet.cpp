@@ -14,11 +14,6 @@
 namespace vrep {
 
 SwedishBaseControllerPluglet::SwedishBaseControllerPluglet() {
-
-
-
-	subscriber=nodeHandle.subscribe(topicName.c_str(), 1, &SwedishBaseControllerPluglet::cmdCallback,this);
-
 	last_cmd_time = -1;
 }
 
@@ -42,8 +37,8 @@ void SwedishBaseControllerPluglet::cmdCallback(
 	float rotVel = -msg->angular.z * factor;
 
 	float vel_wheel_0 = -forwBackVel - leftRightVel - rotVel;
-	float vel_wheel_1 = -forwBackVel + leftRightVel - rotVel;
-	float vel_wheel_2 = -forwBackVel - leftRightVel + rotVel;
+	float vel_wheel_1 = -forwBackVel - leftRightVel + rotVel;
+	float vel_wheel_2 = -forwBackVel + leftRightVel - rotVel;
 	float vel_wheel_3 = -forwBackVel + leftRightVel + rotVel;
 
 	simSetJointTargetVelocity(handles[0],
@@ -92,7 +87,7 @@ void SwedishBaseControllerPluglet::v_repSimStarts_callback() {
 }
 
 void SwedishBaseControllerPluglet::init() {
-
+	subscriber=nodeHandle.subscribe(topicName.c_str(), 1, &SwedishBaseControllerPluglet::cmdCallback,this);
 }
 
 void SwedishBaseControllerPluglet::v_repStart_callback() {
